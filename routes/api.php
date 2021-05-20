@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function(){
+    return 'Laravel JWT';
+});
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -29,3 +33,12 @@ Route::group([
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('register', 'UserController@register');
+Route::post('login', 'UserController@login');
+Route::get('book', 'BookController@book');
+
+Route::get('bookall', 'BookController@bookAuth');
+Route::get('user', 'UserController@getAuthenticatedUser');
+Route::post('refresh', 'UserController@refresh');
+Route::post('logout', 'UserController@logout');
